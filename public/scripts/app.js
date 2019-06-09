@@ -33,8 +33,10 @@ var MovieListApp = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (MovieListApp.__proto__ || Object.getPrototypeOf(MovieListApp)).call(this, props));
 
+    _this.handleChange = _this.handleChange.bind(_this);
     _this.state = {
-      characters: []
+      characters: [],
+      films: []
     };
     return _this;
   }
@@ -49,6 +51,15 @@ var MovieListApp = function (_React$Component) {
       });
     }
   }, {
+    key: 'handleChange',
+    value: function handleChange(url) {
+      var _this3 = this;
+
+      fetchData(url).then(function (data) {
+        _this3.setState({ films: data.films });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -58,7 +69,10 @@ var MovieListApp = function (_React$Component) {
           title: 'Movie List App',
           subtitle: 'May the Force Be With _____'
         }),
-        React.createElement(Aside, { characters: this.state.characters }),
+        React.createElement(Aside, {
+          characters: this.state.characters,
+          handleChange: this.handleChange
+        }),
         React.createElement(Main, null)
       );
     }
@@ -87,16 +101,25 @@ var Header = function Header(props) {
 var Aside = function (_React$Component2) {
   _inherits(Aside, _React$Component2);
 
-  function Aside() {
+  function Aside(props) {
     _classCallCheck(this, Aside);
 
-    return _possibleConstructorReturn(this, (Aside.__proto__ || Object.getPrototypeOf(Aside)).apply(this, arguments));
+    var _this4 = _possibleConstructorReturn(this, (Aside.__proto__ || Object.getPrototypeOf(Aside)).call(this, props));
+
+    _this4.handleChange = _this4.handleChange.bind(_this4);
+    _this4.state = {
+      value: 'select'
+    };
+    return _this4;
   }
 
   _createClass(Aside, [{
     key: 'handleChange',
     value: function handleChange(event) {
-      console.log(event.target.value);
+      this.props.handleChange(event.target.value);
+      this.setState({
+        value: event.target.value
+      });
     }
   }, {
     key: 'render',
@@ -106,7 +129,7 @@ var Aside = function (_React$Component2) {
         null,
         React.createElement(
           'select',
-          { onChange: this.handleChange, value: 'select' },
+          { onChange: this.handleChange, value: this.state.value },
           React.createElement(
             'option',
             { value: 'select', disabled: true },

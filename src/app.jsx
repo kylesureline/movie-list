@@ -17,14 +17,22 @@ const fetchData = url => {
 class MovieListApp extends React.Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
-      characters: []
+      characters: [],
+      films: []
     }
   }
   componentDidMount() {
     fetchData('scripts/characters.json')
         .then(data => {
           this.setState({characters: data.characters});
+        });
+  }
+  handleChange(url) {
+    fetchData(url)
+        .then(data => {
+          this.setState({films: data.films});
         });
   }
   render() {
@@ -34,7 +42,10 @@ class MovieListApp extends React.Component {
           title="Movie List App"
           subtitle="May the Force Be With _____"
         />
-        <Aside characters={this.state.characters}/>
+        <Aside
+          characters={this.state.characters}
+          handleChange={this.handleChange}
+        />
         <Main />
       </div>
     );
@@ -51,13 +62,23 @@ const Header = (props) => {
 };
 
 class Aside extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      value: 'select'
+    }
+  }
   handleChange(event) {
-    console.log(event.target.value);
+    this.props.handleChange(event.target.value);
+    this.setState({
+      value: event.target.value
+    });
   }
   render() {
     return (
       <aside>
-        <select onChange={this.handleChange} value="select">
+        <select onChange={this.handleChange} value={this.state.value}>
           <option value="select" disabled>Select a character</option>
           {this.props.characters.map(character => (
             <Option
