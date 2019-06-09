@@ -23,17 +23,12 @@ var MovieListApp = function (_React$Component) {
       return React.createElement(
         "div",
         null,
-        React.createElement(Header, { title: "Movie List App", subtitle: "May the Force Be With _____" }),
-        React.createElement(
-          "aside",
-          null,
-          "dropdown here"
-        ),
-        React.createElement(
-          "main",
-          null,
-          "results here"
-        )
+        React.createElement(Header, {
+          title: "Movie List App",
+          subtitle: "May the Force Be With _____"
+        }),
+        React.createElement(Aside, null),
+        React.createElement(Main, null)
       );
     }
   }]);
@@ -54,6 +49,67 @@ var Header = function Header(props) {
       "p",
       null,
       props.subtitle
+    )
+  );
+};
+
+var Aside = function Aside(props) {
+  return React.createElement(
+    "aside",
+    null,
+    React.createElement(
+      "p",
+      null,
+      "Select a Character:"
+    ),
+    React.createElement(
+      "select",
+      null,
+      React.createElement(
+        "option",
+        { value: "one" },
+        "One"
+      ),
+      React.createElement(
+        "option",
+        { value: "two" },
+        "Two"
+      ),
+      React.createElement(
+        "option",
+        { value: "three" },
+        "Three"
+      )
+    )
+  );
+};
+
+var Main = function Main(props) {
+  return React.createElement(
+    "main",
+    null,
+    React.createElement(
+      "p",
+      null,
+      "Character has appeared in the following movies:"
+    ),
+    React.createElement(Movies, null)
+  );
+};
+
+var Movies = function Movies(props) {
+  return React.createElement(
+    "ul",
+    null,
+    React.createElement(
+      "li",
+      null,
+      "Movie one"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "Movie two"
     )
   );
 };
