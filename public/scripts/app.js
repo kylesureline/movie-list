@@ -58,7 +58,7 @@ var MovieListApp = function (_React$Component) {
           title: 'Movie List App',
           subtitle: 'May the Force Be With _____'
         }),
-        React.createElement(Aside, null),
+        React.createElement(Aside, { characters: this.state.characters }),
         React.createElement(Main, null)
       );
     }
@@ -84,35 +84,56 @@ var Header = function Header(props) {
   );
 };
 
-var Aside = function Aside(props) {
+var Aside = function (_React$Component2) {
+  _inherits(Aside, _React$Component2);
 
+  function Aside() {
+    _classCallCheck(this, Aside);
+
+    return _possibleConstructorReturn(this, (Aside.__proto__ || Object.getPrototypeOf(Aside)).apply(this, arguments));
+  }
+
+  _createClass(Aside, [{
+    key: 'handleChange',
+    value: function handleChange(event) {
+      console.log(event.target.value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'aside',
+        null,
+        React.createElement(
+          'select',
+          { onChange: this.handleChange, value: 'select' },
+          React.createElement(
+            'option',
+            { value: 'select', disabled: true },
+            'Select a character'
+          ),
+          this.props.characters.map(function (character) {
+            return React.createElement(Option, {
+              key: character.name,
+              url: character.url,
+              name: character.name
+            });
+          })
+        )
+      );
+    }
+  }]);
+
+  return Aside;
+}(React.Component);
+
+;
+
+var Option = function Option(props) {
   return React.createElement(
-    'aside',
-    null,
-    React.createElement(
-      'p',
-      null,
-      'Select a Character:'
-    ),
-    React.createElement(
-      'select',
-      null,
-      React.createElement(
-        'option',
-        { value: 'one' },
-        'One'
-      ),
-      React.createElement(
-        'option',
-        { value: 'two' },
-        'Two'
-      ),
-      React.createElement(
-        'option',
-        { value: 'three' },
-        'Three'
-      )
-    )
+    'option',
+    { value: props.url },
+    props.name
   );
 };
 

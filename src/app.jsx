@@ -34,7 +34,7 @@ class MovieListApp extends React.Component {
           title="Movie List App"
           subtitle="May the Force Be With _____"
         />
-        <Aside />
+        <Aside characters={this.state.characters}/>
         <Main />
       </div>
     );
@@ -50,19 +50,33 @@ const Header = (props) => {
   );
 };
 
-const Aside = (props) => {
-
-  return (
-    <aside>
-      <p>Select a Character:</p>
-      <select>
-        <option value="one">One</option>
-        <option value="two">Two</option>
-        <option value="three">Three</option>
-      </select>
-    </aside>
-  );
+class Aside extends React.Component {
+  handleChange(event) {
+    console.log(event.target.value);
+  }
+  render() {
+    return (
+      <aside>
+        <select onChange={this.handleChange} value="select">
+          <option value="select" disabled>Select a character</option>
+          {this.props.characters.map(character => (
+            <Option
+              key={character.name}
+              url={character.url}
+              name={character.name}
+            />
+          ))}
+        </select>
+      </aside>
+    );
+  }
 };
+
+const Option = (props) => {
+  return (
+    <option value={props.url}>{props.name}</option>
+  );
+}
 
 const Main = (props) => {
   return (
