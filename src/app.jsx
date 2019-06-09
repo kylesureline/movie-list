@@ -20,20 +20,34 @@ class MovieListApp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       characters: [],
-      films: []
+      films: [],
+      error: undefined
     }
   }
   componentDidMount() {
     fetchData('scripts/characters.json')
-        .then(data => {
-          this.setState({characters: data.characters});
-        });
+      .then(data => {
+        this.setState({characters: data.characters});
+      });
   }
   handleChange(url) {
     fetchData(url)
-        .then(data => {
-          this.setState({films: data.films});
+      .then(data => {
+        this.setState(() => ({
+          films: [],
+          error: undefined
+        }));
+        data.films.forEach(film => {
+          fetchData(film)
+          .then(data => {
+            this.setState((prevState) => ({
+              films: prevState.films.concat(data)
+            }));
+          });
         });
+      }).catch(error => {
+        this.setState(() => ({ error: error.message }));
+      });
   }
   render() {
     return (
@@ -46,7 +60,10 @@ class MovieListApp extends React.Component {
           characters={this.state.characters}
           handleChange={this.handleChange}
         />
-        <Main />
+        <Main
+          films={this.state.films}
+          error={this.state.error}
+        />
       </div>
     );
   }
@@ -103,7 +120,10 @@ const Main = (props) => {
   return (
     <main>
       <p>Character has appeared in the following movies:</p>
-      <Movies />
+      <Movies
+        films={props.films}
+        error={props.error}
+      />
     </main>
   );
 };
@@ -111,9 +131,23 @@ const Main = (props) => {
 const Movies = (props) => {
   return (
     <ul>
-      <li>Movie one</li>
-      <li>Movie two</li>
+      {props.error && <li>{props.error}</li>}
+      {
+        props.films.map((film) => (
+          <Movie
+            key={film.title}
+            title={film.title}
+            date={film.release_date}
+          />
+        ))
+      }
     </ul>
+  );
+};
+
+const Movie = (props) => {
+  return (
+    <li>{props.title} - {props.date}</li>
   );
 }
 

@@ -36,7 +36,8 @@ var MovieListApp = function (_React$Component) {
     _this.handleChange = _this.handleChange.bind(_this);
     _this.state = {
       characters: [],
-      films: []
+      films: [],
+      error: undefined
     };
     return _this;
   }
@@ -56,7 +57,25 @@ var MovieListApp = function (_React$Component) {
       var _this3 = this;
 
       fetchData(url).then(function (data) {
-        _this3.setState({ films: data.films });
+        _this3.setState(function () {
+          return {
+            films: [],
+            error: undefined
+          };
+        });
+        data.films.forEach(function (film) {
+          fetchData(film).then(function (data) {
+            _this3.setState(function (prevState) {
+              return {
+                films: prevState.films.concat(data)
+              };
+            });
+          });
+        });
+      }).catch(function (error) {
+        _this3.setState(function () {
+          return { error: error.message };
+        });
       });
     }
   }, {
@@ -73,7 +92,10 @@ var MovieListApp = function (_React$Component) {
           characters: this.state.characters,
           handleChange: this.handleChange
         }),
-        React.createElement(Main, null)
+        React.createElement(Main, {
+          films: this.state.films,
+          error: this.state.error
+        })
       );
     }
   }]);
@@ -169,7 +191,10 @@ var Main = function Main(props) {
       null,
       'Character has appeared in the following movies:'
     ),
-    React.createElement(Movies, null)
+    React.createElement(Movies, {
+      films: props.films,
+      error: props.error
+    })
   );
 };
 
@@ -177,16 +202,28 @@ var Movies = function Movies(props) {
   return React.createElement(
     'ul',
     null,
-    React.createElement(
+    props.error && React.createElement(
       'li',
       null,
-      'Movie one'
+      props.error
     ),
-    React.createElement(
-      'li',
-      null,
-      'Movie two'
-    )
+    props.films.map(function (film) {
+      return React.createElement(Movie, {
+        key: film.title,
+        title: film.title,
+        date: film.release_date
+      });
+    })
+  );
+};
+
+var Movie = function Movie(props) {
+  return React.createElement(
+    'li',
+    null,
+    props.title,
+    ' - ',
+    props.date
   );
 };
 
