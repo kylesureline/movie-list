@@ -5,6 +5,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+@import url("https://fonts.googleapis.com/css?family=Rubik|Rubik+Mono+One&display=swap");
 html {
   line-height: 1.15;
   /* 1 */
@@ -339,6 +340,75 @@ template {
 
 * {
   box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+body {
+  background-color: #000;
+}
+
+select {
+  outline: 0;
+}
+
+.title {
+  font-family: "Rubik Mono One", sans-serif;
+  margin: 0;
+}
+
+.subtitle {
+  margin-bottom: 0;
+}
+
+.subtitle,
+.aside,
+.main {
+  font-family: "Rubik", sans-serif;
+}
+
+.title,
+.subtitle {
+  color: #fff;
+}
+
+.header {
+  background-color: #ac0810;
+  padding: 1em 0;
+}
+
+.message {
+  font-size: 2em;
+  margin: 0;
+}
+
+.main {
+  color: #d0b771;
+}
+
+.movie {
+  font-size: 1.2em;
+}
+
+.header,
+.aside,
+.main {
+  text-align: center;
+}
+
+.aside {
+  padding: 1em 0;
+}
+
+.main {
+  padding: 0.5em 0;
+}
+
+.movie {
+  padding: 0.5em 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

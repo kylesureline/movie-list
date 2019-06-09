@@ -1,3 +1,21 @@
 // ======================================
 //  Grid Layout
 // ======================================
+
+.header,
+.aside,
+.main {
+  text-align: center;
+}
+
+.aside {
+  padding: 1em 0;
+}
+
+.main {
+  padding: .5em 0;
+}
+
+.movie {
+  padding: .5em 0;
+}
