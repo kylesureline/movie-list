@@ -71,9 +71,9 @@ class MovieListApp extends React.Component {
 
 const Header = (props) => {
   return (
-    <header>
-      <h1>{props.title}</h1>
-      {props.subtitle && <p>{props.subtitle}</p>}
+    <header className="header">
+      <h1 className="title">{props.title}</h1>
+      {props.subtitle && <p className="subtitle">{props.subtitle}</p>}
     </header>
   );
 };
@@ -94,8 +94,8 @@ class Aside extends React.Component {
   }
   render() {
     return (
-      <aside>
-        <select onChange={this.handleChange} value={this.state.value}>
+      <aside className="aside">
+        <select className="movie-dropdown" onChange={this.handleChange} value={this.state.value}>
           <option value="select" disabled>Select a character</option>
           {this.props.characters.map(character => (
             <Option
@@ -118,11 +118,10 @@ const Option = (props) => {
 
 const Main = (props) => {
   return (
-    <main>
-      <p>Character has appeared in the following movies:</p>
+    <main className="main">
+      <p className="message">{props.error || 'Character has appeared in the following movies:'}</p>
       <Movies
         films={props.films}
-        error={props.error}
       />
     </main>
   );
@@ -130,8 +129,7 @@ const Main = (props) => {
 
 const Movies = (props) => {
   return (
-    <ul>
-      {props.error && <li>{props.error}</li>}
+    <ul className="movie-list">
       {
         props.films.map((film) => (
           <Movie
@@ -147,7 +145,7 @@ const Movies = (props) => {
 
 const Movie = (props) => {
   return (
-    <li>{props.title} - {props.date}</li>
+    <li className="movie">{props.title} - {props.date}</li>
   );
 }
 

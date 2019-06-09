@@ -106,15 +106,15 @@ var MovieListApp = function (_React$Component) {
 var Header = function Header(props) {
   return React.createElement(
     'header',
-    null,
+    { className: 'header' },
     React.createElement(
       'h1',
-      null,
+      { className: 'title' },
       props.title
     ),
     props.subtitle && React.createElement(
       'p',
-      null,
+      { className: 'subtitle' },
       props.subtitle
     )
   );
@@ -148,10 +148,10 @@ var Aside = function (_React$Component2) {
     value: function render() {
       return React.createElement(
         'aside',
-        null,
+        { className: 'aside' },
         React.createElement(
           'select',
-          { onChange: this.handleChange, value: this.state.value },
+          { className: 'movie-dropdown', onChange: this.handleChange, value: this.state.value },
           React.createElement(
             'option',
             { value: 'select', disabled: true },
@@ -185,15 +185,14 @@ var Option = function Option(props) {
 var Main = function Main(props) {
   return React.createElement(
     'main',
-    null,
+    { className: 'main' },
     React.createElement(
       'p',
-      null,
-      'Character has appeared in the following movies:'
+      { className: 'message' },
+      props.error || 'Character has appeared in the following movies:'
     ),
     React.createElement(Movies, {
-      films: props.films,
-      error: props.error
+      films: props.films
     })
   );
 };
@@ -201,12 +200,7 @@ var Main = function Main(props) {
 var Movies = function Movies(props) {
   return React.createElement(
     'ul',
-    null,
-    props.error && React.createElement(
-      'li',
-      null,
-      props.error
-    ),
+    { className: 'movie-list' },
     props.films.map(function (film) {
       return React.createElement(Movie, {
         key: film.title,
@@ -220,7 +214,7 @@ var Movies = function Movies(props) {
 var Movie = function Movie(props) {
   return React.createElement(
     'li',
-    null,
+    { className: 'movie' },
     props.title,
     ' - ',
     props.date
