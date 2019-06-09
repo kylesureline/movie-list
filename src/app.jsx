@@ -1,5 +1,27 @@
+const fetchData = url => {
+
+  const checkStatus = response => {
+    if(response.ok) {
+      return Promise.resolve(response);
+    } else {
+      return Promise.reject(new Error(response.statusText));
+    }
+  }; // end checkStatus()
+
+  return fetch(url)
+            .then(checkStatus)
+            .then(res => res.json())
+            .catch(error => console.log('Looks like there was a problem', error));
+}; // end fetchData()
+
 class MovieListApp extends React.Component {
   render() {
+
+    fetchData('scripts/characters.json')
+        .then(data => {
+          console.log(data);
+        });
+
     return (
       <div>
         <Header
