@@ -28,20 +28,29 @@ var fetchData = function fetchData(url) {
 var MovieListApp = function (_React$Component) {
   _inherits(MovieListApp, _React$Component);
 
-  function MovieListApp() {
+  function MovieListApp(props) {
     _classCallCheck(this, MovieListApp);
 
-    return _possibleConstructorReturn(this, (MovieListApp.__proto__ || Object.getPrototypeOf(MovieListApp)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (MovieListApp.__proto__ || Object.getPrototypeOf(MovieListApp)).call(this, props));
+
+    _this.state = {
+      characters: []
+    };
+    return _this;
   }
 
   _createClass(MovieListApp, [{
-    key: 'render',
-    value: function render() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
 
       fetchData('scripts/characters.json').then(function (data) {
-        console.log(data);
+        _this2.setState({ characters: data.characters });
       });
-
+    }
+  }, {
+    key: 'render',
+    value: function render() {
       return React.createElement(
         'div',
         null,
@@ -76,6 +85,7 @@ var Header = function Header(props) {
 };
 
 var Aside = function Aside(props) {
+
   return React.createElement(
     'aside',
     null,

@@ -15,13 +15,19 @@ const fetchData = url => {
 }; // end fetchData()
 
 class MovieListApp extends React.Component {
-  render() {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      characters: []
+    }
+  }
+  componentDidMount() {
     fetchData('scripts/characters.json')
         .then(data => {
-          console.log(data);
+          this.setState({characters: data.characters});
         });
-
+  }
+  render() {
     return (
       <div>
         <Header
@@ -45,6 +51,7 @@ const Header = (props) => {
 };
 
 const Aside = (props) => {
+
   return (
     <aside>
       <p>Select a Character:</p>
