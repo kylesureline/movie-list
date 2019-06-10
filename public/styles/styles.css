@@ -387,8 +387,17 @@ select {
   margin: 0;
 }
 
+.movie-dropdown {
+  border-color: inherit;
+}
+
 .main {
   color: #d0b771;
+  perspective: 400px;
+}
+
+.movie-list {
+  transform: rotateX(30deg);
 }
 
 .movie {

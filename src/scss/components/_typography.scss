@@ -34,8 +34,17 @@
   margin: 0;
 }
 
+.movie-dropdown {
+  border-color: inherit;
+}
+
 .main {
   color: map-get($theme, 1);
+  perspective: 400px;
+}
+
+.movie-list {
+  transform: rotateX(30deg);
 }
 
 .movie {
