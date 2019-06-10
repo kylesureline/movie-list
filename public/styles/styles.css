@@ -393,11 +393,6 @@ select {
 
 .main {
   color: #d0b771;
-  perspective: 400px;
-}
-
-.movie-list {
-  transform: rotateX(30deg);
 }
 
 .movie {
@@ -415,7 +410,7 @@ select {
 }
 
 .main {
-  padding: 0.5em 0;
+  padding: 0.5em;
 }
 
 .movie {

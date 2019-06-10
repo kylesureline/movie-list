@@ -212,12 +212,13 @@ var Movies = function Movies(props) {
 };
 
 var Movie = function Movie(props) {
+  var d = new Date(props.date);
   return React.createElement(
     'li',
     { className: 'movie' },
     props.title,
     ' - ',
-    props.date
+    d.toLocaleString()
   );
 };
 
