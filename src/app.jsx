@@ -54,7 +54,7 @@ class MovieListApp extends React.Component {
       <div>
         <Header
           title="Movie List App"
-          subtitle="May the Force Be With _____"
+          subtitle="May the Force Be With You"
         />
         <Aside
           characters={this.state.characters}

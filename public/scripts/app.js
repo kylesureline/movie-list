@@ -86,7 +86,7 @@ var MovieListApp = function (_React$Component) {
         null,
         React.createElement(Header, {
           title: 'Movie List App',
-          subtitle: 'May the Force Be With _____'
+          subtitle: 'May the Force Be With You'
         }),
         React.createElement(Aside, {
           characters: this.state.characters,
