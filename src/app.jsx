@@ -134,8 +134,7 @@ const Movies = (props) => {
         props.films.map((film) => (
           <Movie
             key={film.title}
-            title={film.title}
-            date={film.release_date}
+            film={film}
           />
         ))
       }
@@ -144,9 +143,22 @@ const Movies = (props) => {
 };
 
 const Movie = (props) => {
-  let d = new Date(props.date);
+
+  const d = new Date(props.film.release_date);
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+
   return (
-    <li className="movie"><div className="movie-title">{props.title}</div><div className="movie-date">{d.toLocaleString()}</div></li>
+    <li className="movie">
+      <div className="movie-title">{props.film.title}</div>
+      <div className="movie-date">
+        Release Date: {d.toLocaleString('en-US', options)}
+      </div>
+    </li>
   );
 }
 

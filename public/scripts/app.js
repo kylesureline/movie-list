@@ -204,27 +204,35 @@ var Movies = function Movies(props) {
     props.films.map(function (film) {
       return React.createElement(Movie, {
         key: film.title,
-        title: film.title,
-        date: film.release_date
+        film: film
       });
     })
   );
 };
 
 var Movie = function Movie(props) {
-  var d = new Date(props.date);
+
+  var d = new Date(props.film.release_date);
+  var options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+
   return React.createElement(
     'li',
     { className: 'movie' },
     React.createElement(
       'div',
       { className: 'movie-title' },
-      props.title
+      props.film.title
     ),
     React.createElement(
       'div',
       { className: 'movie-date' },
-      d.toLocaleString()
+      'Release Date: ',
+      d.toLocaleString('en-US', options)
     )
   );
 };
