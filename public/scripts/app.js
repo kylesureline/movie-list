@@ -216,9 +216,16 @@ var Movie = function Movie(props) {
   return React.createElement(
     'li',
     { className: 'movie' },
-    props.title,
-    ' - ',
-    d.toLocaleString()
+    React.createElement(
+      'div',
+      { className: 'movie-title' },
+      props.title
+    ),
+    React.createElement(
+      'div',
+      { className: 'movie-date' },
+      d.toLocaleString()
+    )
   );
 };
 

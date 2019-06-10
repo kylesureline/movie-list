@@ -11,6 +11,7 @@
 .subtitle {
   margin-bottom: 0;
   font-size: 1em;
+  font-style: italic;
 }
 
 .subtitle,
@@ -43,5 +44,17 @@
 }
 
 .movie {
+  border-top: 1px solid $white;
+}
+
+.movie:last-child {
+  border-bottom: 1px solid $white;
+}
+
+.movie-title {
   font-size: 1.1em;
+}
+
+.movie-date {
+  font-size: .85em;
 }

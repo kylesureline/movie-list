@@ -364,6 +364,7 @@ select {
 .subtitle {
   margin-bottom: 0;
   font-size: 1em;
+  font-style: italic;
 }
 
 .subtitle,
@@ -396,7 +397,19 @@ select {
 }
 
 .movie {
+  border-top: 1px solid #fff;
+}
+
+.movie:last-child {
+  border-bottom: 1px solid #fff;
+}
+
+.movie-title {
   font-size: 1.1em;
+}
+
+.movie-date {
+  font-size: 0.85em;
 }
 
 .header,

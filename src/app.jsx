@@ -146,7 +146,7 @@ const Movies = (props) => {
 const Movie = (props) => {
   let d = new Date(props.date);
   return (
-    <li className="movie">{props.title} - {d.toLocaleString()}</li>
+    <li className="movie"><div className="movie-title">{props.title}</div><div className="movie-date">{d.toLocaleString()}</div></li>
   );
 }
 
