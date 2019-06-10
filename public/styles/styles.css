@@ -358,10 +358,12 @@ select {
 .title {
   font-family: "Rubik Mono One", sans-serif;
   margin: 0;
+  font-size: 1.35em;
 }
 
 .subtitle {
   margin-bottom: 0;
+  font-size: 1em;
 }
 
 .subtitle,
@@ -381,7 +383,7 @@ select {
 }
 
 .message {
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 0;
 }
 
@@ -390,7 +392,7 @@ select {
 }
 
 .movie {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .header,
