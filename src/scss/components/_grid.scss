@@ -13,9 +13,34 @@
 }
 
 .main {
-  padding: .5em;
+  padding: 1em;
+}
+
+.movie-list {
+  margin: 1em auto auto;
+  max-width: 800px;
 }
 
 .movie {
   padding: .5em 0;
+}
+
+.movie-dropdown {
+  border-color: inherit;
+}
+
+.main {
+  color: map-get($theme, 1);
+}
+
+.movie {
+  border-top: 1px solid $white;
+  line-height: 1.5;
+  & p {
+    margin: 0 auto;
+  }
+}
+
+.movie:last-child {
+  border-bottom: 1px solid $white;
 }

@@ -144,20 +144,28 @@ const Movies = (props) => {
 
 const Movie = (props) => {
 
-  const d = new Date(props.film.release_date);
+  const film = props.film;
+  const d = new Date(film.release_date);
   const options = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   };
+  let opening = film.opening_crawl.slice(0, 150) + '...';
 
   return (
     <li className="movie">
-      <div className="movie-title">{props.film.title}</div>
-      <div className="movie-date">
+      <p className="movie-title">{film.title}</p>
+      <p className="movie-info">
         Release Date: {d.toLocaleString('en-US', options)}
-      </div>
+      </p>
+      <p className="movie-info">
+        Director: {film.director}
+      </p>
+      <p className="movie-info opening_crawl">
+        {opening}
+      </p>
     </li>
   );
 }

@@ -6,12 +6,18 @@
   font-family: 'Rubik Mono One', sans-serif;
   margin: 0;
   font-size: 1.35em;
+  @media (min-width: 768px) {
+    font-size: 2em;
+  }
 }
 
 .subtitle {
   margin-bottom: 0;
   font-size: 1em;
   font-style: italic;
+  @media (min-width: 768px) {
+    font-size: 1.5em;
+  }
 }
 
 .subtitle,
@@ -31,30 +37,27 @@
 }
 
 .message {
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin: 0;
 }
 
-.movie-dropdown {
-  border-color: inherit;
-}
-
-.main {
-  color: map-get($theme, 1);
-}
-
-.movie {
-  border-top: 1px solid $white;
-}
-
-.movie:last-child {
-  border-bottom: 1px solid $white;
-}
-
 .movie-title {
+  text-decoration: underline;
   font-size: 1.1em;
+  padding: .5em 0;
+  @media (min-width: 768px) {
+    font-size: 1.6em;
+  }
 }
 
-.movie-date {
+.movie-info {
   font-size: .85em;
+  @media (min-width: 768px) {
+    font-size: 1.25em;
+  }
+}
+
+.opening_crawl {
+  font-style: italic;
+  padding: .5em 0;
 }

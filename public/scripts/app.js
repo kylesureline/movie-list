@@ -212,27 +212,40 @@ var Movies = function Movies(props) {
 
 var Movie = function Movie(props) {
 
-  var d = new Date(props.film.release_date);
+  var film = props.film;
+  var d = new Date(film.release_date);
   var options = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   };
+  var opening = film.opening_crawl.slice(0, 150) + '...';
 
   return React.createElement(
     'li',
     { className: 'movie' },
     React.createElement(
-      'div',
+      'p',
       { className: 'movie-title' },
-      props.film.title
+      film.title
     ),
     React.createElement(
-      'div',
-      { className: 'movie-date' },
+      'p',
+      { className: 'movie-info' },
       'Release Date: ',
       d.toLocaleString('en-US', options)
+    ),
+    React.createElement(
+      'p',
+      { className: 'movie-info' },
+      'Director: ',
+      film.director
+    ),
+    React.createElement(
+      'p',
+      { className: 'movie-info opening_crawl' },
+      opening
     )
   );
 };
